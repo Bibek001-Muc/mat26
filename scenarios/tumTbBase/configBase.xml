@@ -10,7 +10,7 @@
 
     <module name="network">
         <param name="inputNetworkFile"
-               value="https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/munich/munich-v1/input/munich-v1.0-network.xml.gz"/>
+               value="C:\Users\Bibek Karki\Desktop\project\project_create_network\matsim-muenchen\scenarios\tumTbBase\munich-v1.0-network (2).xml.gz"/>
     </module>
 
     <module name="qsim" >
@@ -90,7 +90,7 @@
     </module>
 
     <module name="plans">
-        <param name="inputPlansFile" value="https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/munich/munich-v1/input/munich-v1.0-5pct.plans.xml.gz" />
+        <param name="inputPlansFile" value="C:\Users\Bibek Karki\Desktop\project\project_create_network\matsim-muenchen\scenarios\tumTbBase\munich-v1.0-5pct.plans (2).xml.gz" />
     </module>
 
     <module name="planCalcScore" >
