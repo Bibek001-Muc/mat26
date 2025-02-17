@@ -1,97 +1,129 @@
-# The MATSim Munich Scenario
+# Travel Demand Management During the Closure of the Allacher Tunnel
 
-### About this project
+### About This Project
 
-This repository provides a MATSim transport model for Munich, provided by the [Associate Professorship of Travel Behavior](https://www.mos.ed.tum.de/en/tb/) of [Technische Universität München](http://www.tum.de). The Munich MATSim scenario includes a network generated from OpenStreetMap and a plan file, which is the result of the agent-based travel demand model MITO. This model simulates travel demand at the individual resolution, based on the results of the household travel survey Mobilität in Deutschland. For further details see our prefered citation: 
+This project investigates the impact of a partial closure of the Allacher Tunnel—located on the A99 motorway near Munich, handling approximately 132,000 vehicles per day—on local traffic flows. Conducted at Technische Universität München (TUM) under the supervision of Arkadiusz Drabicki at the Lehrstuhl für Mustertechnik, the study utilizes MATSim-based simulations to evaluate various Travel Demand Management (TDM) strategies. These strategies aim to mitigate congestion and promote modal, temporal, and route shifts during the tunnel renovation.
 
- - Moeckel, Rolf, Kuehnel, Nico, Llorca, Carlos, Moreno, Ana Tsui and Rayaprolu, Hema (2020) Agent-based Simulation to Improve Policy Sensitivity of Trip-Based Models. Journal of Advanced Transportation, 2020. https://doi.org/10.1155/2020/1902162
+---
 
-The scenario is ultimately coming from a SILO model that is maintaned elsewhere.
+### Objectives
 
-### Note
+- **Assess Traffic Impacts:**  
+  Investigate how tunnel closure affects traffic flow and causes redistribution in the adjacent road network.
 
-Handling of large files within git is not without problems (git lfs files are not included in the zip download; we have to pay; ...).  In order to avoid this, large files, both on the input and on the output side, reside at https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/munich/munich-v1/input/. These data are open and can be downloaded.   
+- **Develop TDM Strategies:**  
+  Propose measures to alleviate traffic disruptions by:
+    - Implementing road-based interventions (e.g., reducing speed limits and capacities on residential roads)
+    - Enhancing public transport connectivity (e.g., introducing new express bus lines, synchronizing S-Bahn schedules)
+    - Introducing conceptual measures (e.g., carpooling incentives, congestion pricing, park-and-ride facilities, awareness campaigns)
 
-### Simple things (without installing/running MATSim)
+- **Establish Performance Indicators:**  
+  Define KPIs to evaluate the effectiveness of TDM measures, including:
+    - Total travel time and travel time delays
+    - Residential traffic occupancy
+    - Public transport usage
+    - Environmental emissions (CO₂, PM, NOx)
+    - Accessibility and safety metrics
 
-### Downloading the repository alternative 1: Download ZIP
+---
 
-1. Click on `Clone or download` and then on `Download ZIP`.
-1. Unzip the repository.
-1. Go to "Download the data" below.
+### Methodology
 
-### Downloading the repository alternative 2: Clone the repository
+The study employs a MATSim simulation framework and is organized into three analytical scenarios:
 
-##### git clone the code
+- **Scenario 0 – Status Quo Conditions:**  
+  Baseline simulation representing normal traffic operations with the tunnel fully operational.
 
-1. Install git for the command line.
-1. Type `git clone https://github.com/matsim-vsp/matsim-munich.git` in the command line.
+- **Scenario 1 – Impacts of Tunnel Closure:**  
+  Simulation of the traffic flow changes due to a partial tunnel closure. Results indicate significant redistribution, with:
+    - Maximum decreases up to 797 vehicles/hr on some links.
+    - Maximum increases up to 240 vehicles/hr on others.
 
-(Or use your IDE, e.g. Eclipse, IntelliJ, to clone the repository.)
+- **Scenario 2 – Implementation of TDM Measures:**  
+  Evaluation of TDM interventions during the tunnel closure:
+    - **Road Traffic Interventions:**
+        - Reducing speed limits by 40% and halving road capacity on residential links to discourage through-traffic.
+    - **Public Transport Improvements:**
+        - Introducing new express bus lines along proposed corridors (e.g., Western, Northern, and Northwest connections).
+        - Enhancing S-Bahn connectivity via synchronized scheduling and adaptive operations.
+    - **Other Conceptual Measures:**
+        - Encouraging carpooling/ride-sharing.
+        - Implementing congestion pricing.
+        - Establishing park-and-ride facilities.
+        - Running awareness campaigns to influence route and departure time shifts.
 
-This will result in a new `matsim-munich` directory.  Memorize where you have put it.  You can move it, as a whole, to some other place.
+> *Note:* Due to computational constraints, the simulation used a 5% sample of the total population and considered only private car users.
 
-##### Update your local clone of the repository.
+---
 
-1. Go into the `matsim-munich` directory.
-1. Type `git pull`
+### Key Performance Indicators (KPIs)
 
-(Or use your IDE, e.g. Eclipse, IntelliJ, to update the repository.)
+| **Goal**                      | **Indicator**                              | **Target**                                   |
+|-------------------------------|--------------------------------------------|----------------------------------------------|
+| **Improve Journey Experience**| Total Travel Time (min/person)             | Increase limited to 5-10% over baseline      |
+|                               | Travel Time Delay (min/person)             | Not more than a 15% increase over baseline   |
+| **Limit Traffic Spill Over**  | Residential Area Traffic Occupancy (veh/day)| Maintain increase below 5%                   |
+| **Promote PT-Usage**          | PT User Share (%)                          | Increase by 15%                              |
+| **Mitigate Environmental Impact** | Emissions (CO₂, PM, NOx in kg/day)      | Maintain increase below 5%                   |
+| **Ensure Accessibility**      | Service and Facility Accessibility (%)     | 90% access within 30 minutes                 |
+| **Enhance Traffic Safety**    | Accident Rates (accidents/year)            | No increase compared to baseline             |
+|                               | Pedestrian/Cyclist Incidents               | Reduce by 10%                                |
+| **Quality of PT Service**     | PT Capacity Utilization (%)                | Maintain below 90% utilization               |
 
-This will update your repository to the newest version.
+---
 
-### Download the data
-There is no need to download the data to run the base scenario provided by the team from TUM. The is downloaded directly when running matsim via their url. In any case, the input data can be downloaded from the svn server.  
+### Simulation Results
 
-##### svn checkout the data
+- **Scenario 0 vs. Scenario 1:**  
+  The partial closure of the tunnel in Scenario 1 leads to notable traffic redistribution, with some network links experiencing a reduction of up to 797 vehicles/hr and others an increase of up to 240 vehicles/hr.
 
-1. Install svn for the command line.
-1. `svn checkout https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/munich/munich-v1/input/ `
+- **Scenario 1 vs. Scenario 2:**  
+  The implementation of TDM measures (Scenario 2) demonstrates improvements:
+    - **Total Travel Time:** Reduced from 39.8 to 39.2 minutes per person.
+    - **Travel Time Delay:** Reduced from 15.6 to 15.2 minutes per person.
+    - **Residential Traffic Occupancy:** Significantly decreased from 7735 to 4569 vehicles per day.
 
-##### update your local copy of the data
+---
 
-1. Go into the matsim-munich data directory.
-1. Type `svn update`.
+### Conclusion
 
-### Run the MATSim Munich scenario ...
-(Requires either cloning or downloading the repository.)
+- **Effective Mitigation:**  
+  TDM measures, including road-based interventions and enhanced public transport, effectively mitigate traffic disruptions during the tunnel closure.
 
-##### ... using an IDE, e.g. Eclipse, IntelliJ
-1. Set up the project in your IDE.
-1. Make sure the project is configured as maven project.
-1. Run the JAVA class `src/main/java/org/matsim/gui/MATSimGUI.java`.  A simple GUI should open.
-1. In the GUI, click on the "Choose" button for configuration file.  Navigate to the `scenario/tumTb/configBase.xml` to load the configuration file.
-1. Increase memory in the GUI.
-1. Press the "Start MATSim" button.  This should run MATSim.  
-1. "Open" the output directory.  You can drag files into VIA as explaned below.
-1. Edit the config file or adjust the run class.  In particular, it makes sense to reduce the lastIteration number for trying around.  Re-run MATSim.
+- **Improved Modal Shifts:**  
+  Enhanced public transport connectivity encourages a shift away from private car use, reducing congestion and minimizing traffic spillover into residential areas.
 
-##### !! Path convention: !!
+- **Positive KPI Trends:**  
+  Key performance indicators demonstrate improvements in travel time, delay, and traffic occupancy, supporting the benefits of the proposed strategies.
 
-To work outside the GUI, you need
-* the code (from github) in `<someDirectoryRoot>/<something>/matsim-munich`
-* the data (from svn) in `<someDirectoryRoot>/shared-svn/projects/matsim-munich`
+---
 
-More technically, the code searches, from the java root, for the data by `../../shared-svn/projects/matsim-munich` .  This is a bit annoying, but everything else (e.g. git lsf, git fat) is worse.
-So please move the code directory and the data directory accordingly.  
+### Future Outlook
 
+- **Multimodal Simulation:**  
+  Extend the simulation to incorporate additional transportation modes to capture a broader range of travel behaviors.
 
-##### Run VIA on output files
+- **Full-Scale Demand Analysis:**  
+  Utilize full population data to better understand individual behavioral patterns and enhance the model’s predictive capabilities.
 
-1. Get VIA from https://www.simunto.com/via/.  (There is a free license for a small number of agents; that will probably work but only display a small number of vehicles/agents.)
-1. Go to http://svn.vsp.tu-berlin.de/repos/shared-svn/projects/matsim-munich/scenarios/v2/output/2019-03-26-1pct-1it/ .
-1. Download `*.output_network.xml.gz` and `*.output_events.xml.gz`.  Best make sure that they do not uncompress, e.g. by "Download linked file as ...".
-1. Get these files into VIA.  This can be achieved in various ways; one is to open VIA and then drag the files from a file browser into VIA.
-1. Run VIA and enjoy.
+- **Enhanced TDM Measures:**  
+  Further evaluate and integrate additional TDM strategies to continuously improve travel demand management during infrastructure disruptions.
 
+---
 
-### More information
-For more information about the Munich scenario, see here: https://www.mos.ed.tum.de/en/tb/
+### Project Team
 
-For more information about MATSim, see here: https://www.matsim.org/.
+- **Supervisor:** Arkadiusz Drabicki
+- **Team Members:**
+      - Bibek Karki (03784348)
+      - Ahmed Sohaib (03786766)
+      - Aswathy Anand (03786376)
+      - Hasan Rami (03788442)
+      - Muhammad Mujtaba (03787709)
 
+**Institution:** Technische Universität München  
+**Department:** TUM School of Musterverfahren, Lehrstuhl für Mustertechnik
 
-## Internal documentation
+---
 
-Internal documentation can be found here:
-[https://docs.google.com/document/d/133CuXaMuWL0NcstyFHodk4y7J5yFLy9nrLtbBVpNWzM/edit?usp=drive_link](https://docs.google.com/document/d/1V1sSQmq3voY5oQ2qiXbUXU5Bn_mze2BsSg1ecyRF0rw/edit)
+Happy simulating and exploring innovative solutions for travel demand management during infrastructure disruptions!
